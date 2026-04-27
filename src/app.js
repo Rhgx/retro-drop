@@ -23,6 +23,8 @@ const modalCancel = document.querySelector("#modal-cancel");
 const modalPause = document.querySelector("#modal-pause");
 const modalConfirm = document.querySelector("#modal-confirm");
 
+const selectedRomStorageKey = "retro-drop-selected-rom";
+const runningRomStorageKey = "retro-drop-running-rom";
 const preferredShader = localStorage.getItem("retro-drop-shader") || "crt-mattias.glslp";
 let manifest = [];
 let selectedRomId = "";
@@ -143,6 +145,9 @@ function selectedRom() {
 function selectRom(id) {
   selectedRomId = id;
   romSelect.value = id;
+  if (id) {
+    localStorage.setItem(selectedRomStorageKey, id);
+  }
   renderGameList();
 }
 
@@ -262,6 +267,8 @@ function loadRom() {
   });
 
   localStorage.setItem("retro-drop-shader", shaderSelect.value);
+  localStorage.setItem(selectedRomStorageKey, rom.id);
+  localStorage.setItem(runningRomStorageKey, rom.id);
   currentRomId = rom.id;
   setSessionState("running");
   playerFrame.addEventListener("load", focusPlayer, { once: true });
@@ -278,11 +285,20 @@ function resumeGame() {
 }
 
 function stopGame() {
-  playerFrame.removeAttribute("src");
+  playerFrame.src = "about:blank";
   currentRomId = "";
+  localStorage.removeItem(runningRomStorageKey);
   closeSwapModal();
   setSessionState("stopped");
   emptyState.hidden = false;
+}
+
+function resetRestoredPlayerFrame() {
+  playerFrame.src = "about:blank";
+  currentRomId = "";
+  closeSwapModal();
+  emptyState.hidden = false;
+  setSessionState("stopped");
 }
 
 async function loadManifest() {
@@ -308,7 +324,8 @@ async function loadManifest() {
     addOption(romSelect, rom.id, romLabel(rom));
   }
 
-  selectedRomId = manifest[0].id;
+  const restoredRomId = localStorage.getItem(runningRomStorageKey) || localStorage.getItem(selectedRomStorageKey);
+  selectedRomId = manifest.some((rom) => rom.id === restoredRomId) ? restoredRomId : manifest[0].id;
   romSelect.value = selectedRomId;
   romSelect.disabled = false;
   playButton.disabled = false;
@@ -388,4 +405,4 @@ populateShaders();
 createIcons({ icons: { Gamepad2, Maximize, Pause, Play, Square } });
 loadManifest();
 updateControllerStatus(readGamepads());
-setSessionState("stopped");
+resetRestoredPlayerFrame();
