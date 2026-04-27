@@ -5,6 +5,7 @@ const rom = params.get("rom");
 const core = params.get("core");
 const title = params.get("title") || "Retro Drop";
 const shader = params.get("shader") || "disabled";
+const emulatorVendorVersion = "2026-04-27.2";
 let pendingShader = shader;
 let relayedPads = [];
 const previousPads = new Map();
@@ -329,13 +330,28 @@ function afterEmulatorReady() {
 if (!rom || !core) {
   document.body.textContent = "Missing ROM or emulator core.";
 } else {
+  const emulatorDataUrl = new URL("vendor/emulatorjs/data/", window.location.href).href;
+  const cacheBusted = (path) => `${new URL(path, emulatorDataUrl).href}?v=${emulatorVendorVersion}`;
+
   window.EJS_player = "#game";
   window.EJS_gameUrl = rom;
   window.EJS_core = core;
   window.EJS_gameName = title;
   window.EJS_color = "#ffc857";
   window.EJS_DEBUG_XX = true;
-  window.EJS_pathtodata = new URL("vendor/emulatorjs/data/", window.location.href).href;
+  window.EJS_pathtodata = emulatorDataUrl;
+  window.EJS_paths = {
+    "emulator.js": cacheBusted("src/emulator.js"),
+    "nipplejs.js": cacheBusted("src/nipplejs.js"),
+    "shaders.js": cacheBusted("src/shaders.js"),
+    "storage.js": cacheBusted("src/storage.js"),
+    "gamepad.js": cacheBusted("src/gamepad.js"),
+    "GameManager.js": cacheBusted("src/GameManager.js"),
+    "socket.io.min.js": cacheBusted("src/socket.io.min.js"),
+    "compression.js": cacheBusted("src/compression.js"),
+    "emulator.css": cacheBusted("emulator.css"),
+    "en-US": cacheBusted("localization/en-US.json")
+  };
   window.EJS_language = "en-US";
   window.EJS_disableAutoLang = true;
   window.EJS_startOnLoaded = true;
@@ -358,7 +374,7 @@ if (!rom || !core) {
   };
 
   const loader = document.createElement("script");
-  loader.src = new URL("loader.js", window.EJS_pathtodata).href;
+  loader.src = cacheBusted("loader.js");
   document.body.append(loader);
 }
 
