@@ -1,4 +1,4 @@
-![Retro Drop banner](https://capsule-render.vercel.app/api?type=waving&height=180&color=0:232018,35:4d4634,70:f2cb68,100:ffc857&text=Retro%20Drop&fontColor=f5f0df&fontSize=48&fontAlignY=35&desc=Static%20ROM%20launcher%20for%20GitHub%20Pages&descAlignY=58&descSize=16)
+[![Retro Drop banner](https://capsule-render.vercel.app/api?type=waving&height=180&color=0:232018,35:4d4634,70:f2cb68,100:ffc857&text=Retro%20Drop&fontColor=f5f0df&fontSize=48&fontAlignY=35&desc=Static%20ROM%20launcher%20for%20GitHub%20Pages&descAlignY=58&descSize=16)](https://rhgx.github.io/retro-drop/)
 
 <p align="center">
     <img alt="Static site" src="https://img.shields.io/badge/static_site-GitHub_Pages-222?style=for-the-badge">
