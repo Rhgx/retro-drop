@@ -1,0 +1,34 @@
+{
+  "name": "retro-drop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static GitHub Pages ROM launcher powered by EmulatorJS.",
+  "scripts": {
+    "dev": "npm run generate && npm run vendor && vite --host 0.0.0.0",
+    "generate": "node scripts/generate-rom-manifest.mjs",
+    "vendor": "node scripts/vendor-emulatorjs.mjs",
+    "build": "npm run generate && npm run vendor && vite build",
+    "serve": "vite preview --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "@emulatorjs/core-fceumm": "^4.2.3",
+    "@emulatorjs/core-gambatte": "^4.2.3",
+    "@emulatorjs/core-gearcoleco": "^4.2.3",
+    "@emulatorjs/core-genesis_plus_gx": "^4.2.3",
+    "@emulatorjs/core-handy": "^4.2.3",
+    "@emulatorjs/core-mednafen_ngp": "^4.2.3",
+    "@emulatorjs/core-mednafen_pce": "^4.2.3",
+    "@emulatorjs/core-mednafen_wswan": "^4.2.3",
+    "@emulatorjs/core-mgba": "^4.2.3",
+    "@emulatorjs/core-mupen64plus_next": "^4.2.3",
+    "@emulatorjs/core-pcsx_rearmed": "^4.2.3",
+    "@emulatorjs/core-picodrive": "^4.2.3",
+    "@emulatorjs/core-prosystem": "^4.2.3",
+    "@emulatorjs/core-smsplus": "^4.2.3",
+    "@emulatorjs/core-snes9x": "^4.2.3",
+    "@emulatorjs/core-stella2014": "^4.2.3",
+    "@emulatorjs/emulatorjs": "^4.2.3",
+    "lucide": "^1.11.0",
+    "vite": "^8.0.10"
+  }
+}

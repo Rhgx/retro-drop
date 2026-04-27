@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Retro Drop</title>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="console">
+        <div class="topbar" aria-label="ROM launcher controls">
+          <div class="controls">
+            <label>
+              <span>Search</span>
+              <input id="game-filter" type="search" placeholder="Filter games" autocomplete="off">
+            </label>
+            <label>
+              <span>System</span>
+              <select id="system-filter"></select>
+            </label>
+            <select id="rom-select" hidden></select>
+            <label>
+              <span>Shader</span>
+              <select id="shader-select"></select>
+            </label>
+            <button id="controller-button" class="icon-button" type="button" aria-label="Activate controller" title="Activate controller">
+              <i data-lucide="gamepad-2"></i>
+            </button>
+            <span id="controller-status" class="controller-status">No controller</span>
+            <button id="pause-button" class="icon-button" type="button" aria-label="Pause" title="Pause" hidden>
+              <i data-lucide="pause"></i>
+            </button>
+            <button id="resume-button" class="icon-button" type="button" aria-label="Resume" title="Resume" hidden>
+              <i data-lucide="play"></i>
+            </button>
+            <button id="stop-button" class="icon-button" type="button" aria-label="Stop" title="Stop" hidden>
+              <i data-lucide="square"></i>
+            </button>
+            <button id="fullscreen-button" class="icon-button" type="button" aria-label="Fullscreen" title="Fullscreen">
+              <i data-lucide="maximize"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="library" aria-label="Game library">
+          <div id="game-list" class="game-list"></div>
+        </div>
+
+        <div id="screen-frame" class="screen-frame">
+          <div class="bezel">
+            <iframe id="player-frame" title="Emulator player" allow="fullscreen; gamepad *; autoplay" tabindex="0"></iframe>
+            <div id="empty-state" class="empty-state">
+              <button id="play-button" class="start-button" type="button">
+                <i data-lucide="play"></i>
+                <span>Start</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="swap-modal" class="modal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="swap-title">
+        <h2 id="swap-title">Switch game?</h2>
+        <p id="swap-message"></p>
+        <div class="modal-actions">
+          <button id="modal-cancel" type="button">Cancel</button>
+          <button id="modal-pause" type="button">Pause Current</button>
+          <button id="modal-confirm" type="button">Switch</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
