@@ -1,0 +1,16 @@
+[
+  {
+    "id": "donkey kong country.sfc",
+    "title": "Donkey Kong Country",
+    "path": "roms/Donkey%20Kong%20Country.sfc",
+    "core": "snes",
+    "systemLabel": "SNES"
+  },
+  {
+    "id": "donkey kong country 2 - diddy's kong quest.sfc",
+    "title": "Donkey Kong Country 2 Diddy's Kong Quest",
+    "path": "roms/Donkey%20Kong%20Country%202%20-%20Diddy's%20Kong%20Quest.sfc",
+    "core": "snes",
+    "systemLabel": "SNES"
+  }
+]
