@@ -44,7 +44,7 @@ async function patchEmulatorSource() {
 
   source = source.replace(
     /fetch\("https:\/\/cdn\.emulatorjs\.org\/stable\/data\/version\.json"\)[\s\S]*?\n    }\n    versionAsInt/,
-    `fetch(this.config.dataPath + "version.json").then(response => {
+    `fetch(((this.config && this.config.dataPath) || window.EJS_pathtodata || "./") + "version.json").then(response => {
             if (response.ok) {
                 response.text().then(body => {
                     let version = JSON.parse(body);
