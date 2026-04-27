@@ -1,11 +1,7 @@
-# Retro Drop
-
-Repository name: `retro-drop` (`Retro Drop`)
-
-![Retro Drop banner](https://capsule-render.vercel.app/api?type=waving&height=180&color=0:1f2937,50:4f46e5,100:06b6d4&text=Retro%20Drop&fontColor=ffffff&fontSize=48&fontAlignY=35&desc=Static%20ROM%20launcher%20for%20GitHub%20Pages&descAlignY=58)
+![Retro Drop banner](https://capsule-render.vercel.app/api?type=waving&height=180&color=0:232018,35:4d4634,70:f2cb68,100:ffc857&text=Retro%20Drop&fontColor=f5f0df&fontSize=48&fontAlignY=35&desc=Static%20ROM%20launcher%20for%20GitHub%20Pages&descAlignY=58&descSize=16)
 
 <p align="center">
-  <img alt="Static site" src="https://img.shields.io/badge/static_site-GitHub_Pages-222?style=for-the-badge&logo=githubpages&logoColor=white">
+    <img alt="Static site" src="https://img.shields.io/badge/static_site-GitHub_Pages-222?style=for-the-badge">
   <img alt="Powered by EmulatorJS" src="https://img.shields.io/badge/powered_by-EmulatorJS-4f46e5?style=for-the-badge">
   <img alt="ROM manifest" src="https://img.shields.io/badge/ROM_manifest-auto_generated-06b6d4?style=for-the-badge">
   <img alt="Shaders" src="https://img.shields.io/badge/shaders-CRT_ready-f97316?style=for-the-badge">
@@ -14,7 +10,7 @@ Repository name: `retro-drop` (`Retro Drop`)
 
 A fast, tiny, static GitHub Pages launcher for your own NES, SNES, Game Boy, GBA, Genesis, N64, and other browser-supported ROM backups.
 
-Retro Drop uses [Vite](https://vite.dev/) and vendors EmulatorJS locally under `public/vendor/emulatorjs/data`, so the deployed player does not depend on EmulatorJS or icon CDN scripts at runtime.
+Built with [Vite](https://vite.dev/) and locally vendored EmulatorJS assets, so the deployed player has no runtime CDN dependencies.
 
 ---
 
@@ -23,7 +19,6 @@ Retro Drop uses [Vite](https://vite.dev/) and vendors EmulatorJS locally under `
 - Launch your ROM library directly from a static web page
 - GitHub Pages-friendly deployment
 - Auto-generated ROM manifest
-- Local EmulatorJS loader and core assets
 - Built-in shader picker with CRT presets
 - Gamepad support with generated default mappings
 - No backend, database, or server app required
@@ -41,7 +36,7 @@ Retro Drop uses [Vite](https://vite.dev/) and vendors EmulatorJS locally under `
 npm run build
 ```
 
-GitHub Pages deploys run the manifest generator and Vite build automatically, so a normal push is enough once your ROM files are in the repo.
+GitHub Pages deploys build automatically, so a normal push is enough once your ROM files are in the repo.
 
 > Only add ROMs that you have the right to use.
 
@@ -73,10 +68,6 @@ roms/
   your-game.gba
 
 npm run build
-  |
-generated ROM manifest
-  |
-local EmulatorJS vendor assets
   |
 dist/index.html launcher
   |
@@ -113,7 +104,7 @@ Disc-based systems may require BIOS files or extra `cue/bin` handling depending 
 
 ## Shaders
 
-The shader dropdown is populated from EmulatorJS' current built-in shader set, including CRT presets:
+The shader dropdown includes EmulatorJS' built-in shader set, including CRT presets:
 
 ```text
 crt-mattias.glslp
@@ -132,7 +123,7 @@ bicubic
 mix-frames
 ```
 
-Shaders can be changed while a ROM is already running. Retro Drop sends the new shader to the active EmulatorJS instance instead of reloading the game.
+Shaders can be changed while a ROM is already running, without reloading the game.
 
 ---
 
@@ -146,13 +137,7 @@ The button will:
 - Detect already-connected pads
 - Assign them to EmulatorJS player slots
 
-`npm run build` also generates:
-
-```text
-src/generated-controls.js
-```
-
-This file contains the default DualSense-friendly mappings used by the player on GitHub Pages deploys. The preset covers:
+Default DualSense-friendly mappings are generated at build time and cover:
 
 - Face buttons
 - D-pad
@@ -177,7 +162,7 @@ npm run serve
 | --- | --- |
 | `npm install` | Installs project dependencies |
 | `npm run dev` | Generates local assets and starts Vite |
-| `npm run build` | Generates the manifest, vendors EmulatorJS, and builds `dist/` |
+| `npm run build` | Generates the manifest and builds `dist/` |
 | `npm run serve` | Starts a Vite preview server for `dist/` |
 
 ---
@@ -190,7 +175,7 @@ Once your ROM files are in the repo:
 
 1. Commit your changes.
 2. Push to GitHub.
-3. Let the Pages workflow install dependencies and build `dist/`.
+3. Let the Pages workflow build `dist/`.
 4. Open your deployed launcher.
 
 No backend required. No upload service required. No database required.
