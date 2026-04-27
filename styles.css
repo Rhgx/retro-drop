@@ -237,6 +237,7 @@ iframe {
   gap: 8px;
   text-align: center;
   color: var(--muted);
+  background: #000;
   padding: 24px;
 }
 
