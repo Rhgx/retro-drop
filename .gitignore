@@ -1,6 +1,7 @@
 node_modules/
 *.log
 dist/
-roms/*
+# roms/*
+roms/manifest.json
 !roms/.gitkeep
 .vite-dev*.log
